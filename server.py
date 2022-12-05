@@ -1,10 +1,10 @@
 import socket
 import multiprocessing as mp
 
-def con(Connection, adress):
+#def con(Connection, adress):
     
 
-connections = {}
+#connections = {}
 
 s = socket.socket()
 port = 6666
