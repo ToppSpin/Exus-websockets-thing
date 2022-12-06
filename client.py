@@ -2,7 +2,7 @@ import socket
 s = socket.socket()        
 port = 6666
 
-s.connect(('78.71.14.72', port))
+s.connect(('192.168.165.65', port))
 
 while True:
     x = input("Write here: ")
