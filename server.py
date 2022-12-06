@@ -1,20 +1,25 @@
 import socket
 import multiprocessing as mp
 
-#def con(Connection, adress):
-    
+def con(Connection):
+    print("yoyo")
+    while True:
+        print(">> ", Connection.recv(1024).decode())
+        Connection.send("2".encode())
 
-#connections = {}
+connections = {}
 
 s = socket.socket()
 port = 6666
-s.bind(('', port))
+i = 0
 
-while True:
-    s.listen(5)
-    c, addr = s.accept()
-    print ('Got connection from', addr)
-
+if __name__ == '__main__':
     while True:
-        print(">> ", c.recv(1024).decode())
-        c.send("2".encode())
+        s.bind(('', port))
+        s.listen(5)
+        c, addr = s.accept()
+        print ('Got connection from', addr)
+        connections.update({i:mp.Process(target=con, args=(c,))})
+        connections[i].start()
+        i += 1
+        port = port + 1
