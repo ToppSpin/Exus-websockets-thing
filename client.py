@@ -1,10 +1,22 @@
-import socket            
+import socket       
+import threading as th
+
 s = socket.socket()        
 port = 6666
+host = '10.189.33.66'
 
-s.connect(('78.71.14.72', port))
+def clientR(c):
+    while True:
+        msg = c.recv(2048).decode()
+        print(msg)
+
+
+
+s.connect((host, port))
+
+p1 = th.Thread(target=clientR, args=(s,))
+p1.start()
 
 while True:
-    x = input("Write here: ")
+    x = input("")
     s.send(x.encode())
-    print('>> ', s.recv(1024).decode())
