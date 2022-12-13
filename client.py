@@ -3,14 +3,12 @@ import threading as th
 
 s = socket.socket()        
 port = 6666
-host = '10.189.33.66'
+host = '192.168.165.65'
 
 def clientR(c):
     while True:
         msg = c.recv(2048).decode()
         print(msg)
-
-
 
 s.connect((host, port))
 
