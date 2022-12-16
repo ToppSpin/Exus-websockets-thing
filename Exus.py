@@ -1,21 +1,22 @@
-import socket
-import threading
-import time
+import tkinter as tk
 
-s = socket.socket()
-port = 6666
+txt = True
 
-s.bind(('', port))
-
-s.listen(5)
-
-c, addr = s.accept()
-print('Got a connection from:', addr)
-
+def func():
+    global txt
+    if txt:
+        myLabel.config(text="Hej")
+        txt = False
+    else:
+        myLabel.config(text="Din mamma")
+        txt=True
 
 
+root = tk.Tk()
 
-
-while True:
-    x = input("YEs")
-    c.send(x.encode())
+myLabel = tk.Label(root, text="du", anchor='n')
+myLabel.pack(side=tk.TOP)
+myButton = tk.Button(root, command=func, text='CLICK ME!')
+myButton.pack(side=tk.LEFT)
+root.minsize(1000, 400)
+root.mainloop()

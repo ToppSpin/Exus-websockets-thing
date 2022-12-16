@@ -3,7 +3,7 @@ import threading as th
 
 s = socket.socket()        
 port = 6666
-host = '10.189.33.66'
+host = '78.71.14.72'
 
 def clientR(c):
     while True:
