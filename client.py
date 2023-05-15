@@ -1,20 +1,25 @@
 import socket       
 import threading as th
 
-s = socket.socket()        
-port = 6666
-host = '78.71.14.72'
+#The client will split into two processes, one for sending and one for recieving
 
-def clientR(c):
+#The recieving process
+def clientR(connection):
     while True:
-        msg = c.recv(2048).decode()
-        print(msg)
+        message = connection.recv(2048).decode()
+        print(message)
 
-s.connect((host, port))
+#The needed variables
+Clientsocket = socket.socket()        
+port = 6666
+host = '10.189.37.0'
 
-p1 = th.Thread(target=clientR, args=(s,))
-p1.start()
+#The socket connects and starts the recieving process
+Clientsocket.connect((host, port))
+procces1 = th.Thread(target=clientR, args=(Clientsocket,))
+procces1.start()
 
+#After that the sending process starts
 while True:
     x = input("")
-    s.send(x.encode())
+    Clientsocket.send(x.encode())
